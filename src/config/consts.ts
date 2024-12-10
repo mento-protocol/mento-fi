@@ -23,3 +23,12 @@ export const MAX_EXCHANGE_SPREAD = 0.1 // 10%
 export const ERC20_ABI = [
   'function allowance(address owner, address spender) view returns (uint256)',
 ]
+
+export const BROKER_ABI = [
+  'function getRateFeedId(string fromSymbol, string toSymbol) pure returns (bytes32)',
+  'function getRate(bytes32 rateFeedId) view returns (uint256 numerator, uint256 denominator)',
+  'function getAmountOut(address from, address to, uint256 amountIn) view returns (uint256)',
+  'function getAmountIn(address from, address to, uint256 amountOut) view returns (uint256)',
+  'function swapCollateral(address to, uint256 amountIn) returns (uint256)',
+  'function swap(address from, address to, uint256 amountIn) returns (uint256)',
+]

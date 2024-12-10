@@ -1,10 +1,10 @@
 import { useQuery } from '@tanstack/react-query'
-import { ethers } from 'ethers'
+import { Contract, ethers } from 'ethers'
 import { useEffect } from 'react'
 import { toast } from 'react-toastify'
-import { SWAP_QUOTE_REFETCH_INTERVAL } from 'src/config/consts'
+import { BROKER_ABI, SWAP_QUOTE_REFETCH_INTERVAL } from 'src/config/consts'
 import { TokenId, Tokens, getTokenAddress } from 'src/config/tokens'
-import { getMentoSdk } from 'src/features/sdk'
+import { getProvider } from 'src/features/providers'
 import { SwapDirection } from 'src/features/swap/types'
 import {
   calcExchangeRate,
@@ -39,13 +39,16 @@ export function useSwapQuote(
       if (amountWeiBN.lte(0) || !fromToken || !toToken) return null
       const fromTokenAddr = getTokenAddress(fromTokenId, chainId)
       const toTokenAddr = getTokenAddress(toTokenId, chainId)
-      const mento = await getMentoSdk(chainId)
+
+      // TODO: Set me please 🥲
+      const brokerAddress = ''
+      const brokerV3 = new Contract(brokerAddress, BROKER_ABI, getProvider(chainId))
 
       let quoteWei: string
       if (isSwapIn) {
-        quoteWei = (await mento.getAmountOut(fromTokenAddr, toTokenAddr, amountWeiBN)).toString()
+        quoteWei = (await brokerV3.getAmountOut(fromTokenAddr, toTokenAddr, amountWeiBN)).toString()
       } else {
-        quoteWei = (await mento.getAmountIn(fromTokenAddr, toTokenAddr, amountWeiBN)).toString()
+        quoteWei = (await brokerV3.getAmountIn(fromTokenAddr, toTokenAddr, amountWeiBN)).toString()
       }
 
       const quote = fromWei(quoteWei, quoteDecimals).toString()
