@@ -22,8 +22,36 @@ import { jsonRpcProvider } from 'wagmi/providers/jsonRpc'
 
 const reactQueryClient = new QueryClient({})
 
+export const localhost = {
+  id: 11155111,
+  name: 'Localhost',
+  network: 'Localhost',
+  iconUrl: 'https://i.imgur.com/Q3oIdip.png',
+  iconBackground: '#000000',
+  nativeCurrency: {
+    decimals: 18,
+    name: 'ETH',
+    symbol: 'ETH',
+  },
+  rpcUrls: {
+    default: {
+      http: ['http://127.0.0.1:8545'],
+      public: {
+        http: ['http://127.0.0.1:8545'],
+      },
+      // public rpc url
+    },
+  },
+  blockExplorers: {
+    default: { name: 'Localhost Explorer', url: 'https://explorer.testnet.mantle.xyz' },
+  },
+  testnet: true,
+}
+
 const { chains, provider } = configureChains(
-  [Celo, Alfajores, Baklava],
+  // @ts-ignore
+  [Celo, Alfajores, Baklava, localhost],
+  // @ts-ignore
   [jsonRpcProvider({ rpc: (chain) => ({ http: chain.rpcUrls.default.http[0] }) })]
 )
 

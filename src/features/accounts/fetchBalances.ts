@@ -34,10 +34,12 @@ async function _fetchBalances(address: string, chainId: number) {
   validateAddress(address, 'fetchBalances')
   const tokenBalances: Partial<Record<TokenId, string>> = {}
   for (const tokenId of getTokenOptionsByChainId(chainId)) {
+    console.log('Getting token balance for tokenId: ', tokenId)
     const tokenAddr = getTokenAddress(tokenId, chainId)
     const provider = getProvider(chainId)
     const tokenContract = new Contract(tokenAddr, erc20ABI, provider)
     const balance: BigNumberish = await tokenContract.balanceOf(address)
+    console.log('Balance: ', balance)
     tokenBalances[tokenId] = balance.toString()
   }
   return tokenBalances as Record<TokenId, string>

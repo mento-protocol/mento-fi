@@ -5,7 +5,7 @@ import { fromWeiRounded } from 'src/utils/amount'
 
 export function BalancesSummary() {
   const balances = useAppSelector((s) => s.account.balances)
-  const tokenIds = Object.keys(balances) as TokenId[]
+  const tokenIds = Object.keys(balances).filter((t) => t !== 'CELO') as TokenId[]
 
   return (
     <>

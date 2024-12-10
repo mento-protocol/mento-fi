@@ -29,7 +29,7 @@ export function Footer() {
         </div>
       </div>
       <ThemeToggle />
-      <BlockIndicator />
+      {/* <BlockIndicator /> */}
     </div>
   )
 }

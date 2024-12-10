@@ -5,6 +5,7 @@ export const BrokerAddresses: Record<ChainId, Address> = {
   [ChainId.Alfajores]: '0xD3Dff18E465bCa6241A244144765b4421Ac14D09',
   [ChainId.Baklava]: '0x6723749339e320E1EFcd9f1B0D997ecb45587208',
   [ChainId.Celo]: '0x777A8255cA72412f0d706dc03C9D1987306B4CaD',
+  [ChainId.Localhost]: '0xD3Dff18E465bCa6241A244144765b4421Ac14D09',
 }
 
 export const AlfajoresExchanges: Exchange[] = [
@@ -384,8 +385,20 @@ export const CeloExchanges: Exchange[] = [
   },
 ]
 
+export const LocalhostExchanges: Exchange[] = [
+  {
+    providerAddr: '0x9B64E8EaBD1a035b148cE970d3319c5C3Ad53EC3',
+    id: '0x3135b662c38265d0655177091f1b647b4fef511103d06c016efdf18b46930d2c',
+    assets: [
+      '0x874069Fa1Eb16D44d622F2e0Ca25eeA172369bC1',
+      '0xF194afDf50B03e69Bd7D057c1Aa9e10c9954E4C9',
+    ],
+  },
+]
+
 export const MentoExchanges: Record<ChainId, Array<Exchange>> = {
   [ChainId.Alfajores]: AlfajoresExchanges,
   [ChainId.Baklava]: BaklavaExchanges,
   [ChainId.Celo]: CeloExchanges,
+  [ChainId.Localhost]: LocalhostExchanges,
 }

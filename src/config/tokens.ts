@@ -180,6 +180,22 @@ export const TokenAddresses: Record<ChainId, Record<TokenId, Address>> = Object.
     [TokenId.PUSO]: '0x105d4A9306D2E55a71d2Eb95B81553AE1dC20d7B',
     [TokenId.cCOP]: '0x8A567e2aE79CA692Bd748aB832081C45de4041eA',
   },
+  [ChainId.Localhost]: {
+    [TokenId.CELO]: '0xe503f09e55c5ef32a055667493dfc8c33634edc0',
+    [TokenId.cEUR]: '0xe503f09e55c5ef32a055667493dfc8c33634edc0',
+    [TokenId.cUSD]: '0xe503f09e55c5ef32a055667493dfc8c33634edc0',
+    // [TokenId.CELO]: '0xe503f09e55c5ef32a055667493dfc8c33634edc0',
+    // [TokenId.cEUR]: '',
+    [TokenId.cREAL]: '',
+    [TokenId.USDC]: '',
+    [TokenId.USDT]: '',
+    [TokenId.axlUSDC]: '',
+    [TokenId.axlEUROC]: '',
+    [TokenId.eXOF]: '',
+    [TokenId.cKES]: '',
+    [TokenId.PUSO]: '',
+    [TokenId.cCOP]: '',
+  },
 })
 
 export function isNativeToken(tokenId: string) {

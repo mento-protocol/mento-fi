@@ -2,6 +2,7 @@ export enum ChainId {
   Alfajores = 44787,
   Baklava = 62320,
   Celo = 42220,
+  Localhost = 11155111,
 }
 
 export interface ChainMetadata {
@@ -36,10 +37,19 @@ export const Celo: ChainMetadata = {
   explorerApiUrl: 'https://api.celoscan.io/api',
 }
 
+export const Localhost: ChainMetadata = {
+  chainId: ChainId.Localhost,
+  name: 'Localhost',
+  rpcUrl: 'http://127.0.0.1:8545',
+  explorerUrl: 'https://celoscan.io',
+  explorerApiUrl: 'https://api.celoscan.io/api',
+}
+
 export const chainIdToChain: Record<number, ChainMetadata> = {
   [ChainId.Alfajores]: Alfajores,
   [ChainId.Baklava]: Baklava,
   [ChainId.Celo]: Celo,
+  [ChainId.Localhost]: Localhost,
 }
 
-export const allChains = [Celo, Alfajores, Baklava]
+export const allChains = [Celo, Alfajores, Baklava, Localhost]
