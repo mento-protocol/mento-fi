@@ -1,9 +1,11 @@
 import { useQuery } from '@tanstack/react-query'
 import BigNumber from 'bignumber.js'
+import { Contract } from 'ethers'
 import { useEffect } from 'react'
 import { toast } from 'react-toastify'
+import { BROKER_ABI } from 'src/config/consts'
 import { TokenId, getTokenAddress } from 'src/config/tokens'
-import { getMentoSdk } from 'src/features/sdk'
+import { getProvider } from 'src/features/providers'
 import { SwapDirection } from 'src/features/swap/types'
 import { logger } from 'src/utils/logger'
 import { usePrepareSendTransaction, useSendTransaction } from 'wagmi'
@@ -40,13 +42,24 @@ export function useSwapTransaction(
         logger.debug('Skipping swap transaction')
         return null
       }
-      const sdk = await getMentoSdk(chainId)
+
+      // TODO: Set me please 🥲
+      const brokerAddress = ''
       const fromTokenAddr = getTokenAddress(fromToken, chainId)
       const toTokenAddr = getTokenAddress(toToken, chainId)
-      const brokerAddr = sdk.getBroker().address
-      const swapFn = direction === 'in' ? sdk.swapIn.bind(sdk) : sdk.swapOut.bind(sdk)
-      const txRequest = await swapFn(fromTokenAddr, toTokenAddr, amountInWei, thresholdAmountInWei)
-      return { ...txRequest, to: brokerAddr }
+      const provider = getProvider(chainId)
+      const brokerV3 = new Contract(brokerAddress, BROKER_ABI, provider)
+
+      let txRequest
+
+      // If token in is cUSD we need to call swap collateral
+      if (fromToken == TokenId.CELO) {
+        txRequest = await brokerV3.populateTransaction.swapCollateral(toTokenAddr, amountInWei)
+      } else {
+        txRequest = await brokerV3.populateTransaction.swap(fromTokenAddr, toTokenAddr, amountInWei)
+      }
+
+      return { ...txRequest, to: brokerAddress }
     }
   )
 
