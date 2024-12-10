@@ -43,8 +43,7 @@ export function useSwapTransaction(
         return null
       }
 
-      // TODO: Set me please 🥲
-      const brokerAddress = ''
+      const brokerAddress = '0x6AD4e21FD3a17932CbCB3Ad1b566C6bACc94EF2F'
       const fromTokenAddr = getTokenAddress(fromToken, chainId)
       const toTokenAddr = getTokenAddress(toToken, chainId)
       const provider = getProvider(chainId)
@@ -53,11 +52,17 @@ export function useSwapTransaction(
       let txRequest
 
       // If token in is cUSD we need to call swap collateral
-      if (fromToken == TokenId.CELO) {
-        txRequest = await brokerV3.populateTransaction.swapCollateral(toTokenAddr, amountInWei)
+      if (fromToken == TokenId.cUSD) {
+        console.log('broker address', brokerAddress)
+        console.log('swapping from collateral')
+        console.log('toToken', toToken)
+        console.log('amountInWei', amountInWei)
+        txRequest = await brokerV3.populateTransaction.swapCollateral(toToken, amountInWei)
+        console.log('txRequest', txRequest)
       } else {
         txRequest = await brokerV3.populateTransaction.swap(fromTokenAddr, toTokenAddr, amountInWei)
       }
+      // console.log('txRequest', txRequest)
 
       return { ...txRequest, to: brokerAddress }
     }

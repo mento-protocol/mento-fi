@@ -20,8 +20,7 @@ export function useApproveTransaction(
     async () => {
       if (!accountAddress || new BigNumber(amountInWei).lte(0)) return null
 
-      // TODO: Set me please 🥲
-      const brokerAddress = ''
+      const brokerAddress = '0x6AD4e21FD3a17932CbCB3Ad1b566C6bACc94EF2F'
       const tokenAddr = getTokenAddress(tokenId, chainId)
       const provider = getProvider(chainId)
 

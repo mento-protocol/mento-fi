@@ -40,8 +40,7 @@ export function useSwapQuote(
       const fromTokenAddr = getTokenAddress(fromTokenId, chainId)
       const toTokenAddr = getTokenAddress(toTokenId, chainId)
 
-      // TODO: Set me please 🥲
-      const brokerAddress = ''
+      const brokerAddress = '0x6AD4e21FD3a17932CbCB3Ad1b566C6bACc94EF2F'
       const brokerV3 = new Contract(brokerAddress, BROKER_ABI, getProvider(chainId))
 
       let quoteWei: string

@@ -181,7 +181,7 @@ export const TokenAddresses: Record<ChainId, Record<TokenId, Address>> = Object.
     [TokenId.cCOP]: '0x8A567e2aE79CA692Bd748aB832081C45de4041eA',
   },
   [ChainId.Localhost]: {
-    [TokenId.CELO]: '0xe503f09e55c5ef32a055667493dfc8c33634edc0',
+    [TokenId.CELO]: '0xb6900011ff85da0f990be424aa88f4dbf2442584',
     [TokenId.cEUR]: '0x85a14e14309dd9beea55d69512e283f898e1425b',
     [TokenId.cUSD]: '0xb6900011ff85da0f990be424aa88f4dbf2442584',
     [TokenId.cREAL]: '0x47c88261347feecc2481c714fd4d6995b9638729',
