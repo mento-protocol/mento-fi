@@ -390,8 +390,24 @@ export const LocalhostExchanges: Exchange[] = [
     providerAddr: '0x9B64E8EaBD1a035b148cE970d3319c5C3Ad53EC3',
     id: '0x3135b662c38265d0655177091f1b647b4fef511103d06c016efdf18b46930d2c',
     assets: [
-      '0x874069Fa1Eb16D44d622F2e0Ca25eeA172369bC1',
-      '0xF194afDf50B03e69Bd7D057c1Aa9e10c9954E4C9',
+      '0x85a14e14309dd9beea55d69512e283f898e1425b',
+      '0x47c88261347feecc2481c714fd4d6995b9638729',
+    ],
+  },
+  {
+    providerAddr: '0x9B64E8EaBD1a035b148cE970d3319c5C3Ad53EC3',
+    id: '0x3135b662c38265d0655177091f1b647b4fef511103d06c016efdf18b46930d2c',
+    assets: [
+      '0xb6900011ff85da0f990be424aa88f4dbf2442584',
+      '0x47c88261347feecc2481c714fd4d6995b9638729',
+    ],
+  },
+  {
+    providerAddr: '0x9B64E8EaBD1a035b148cE970d3319c5C3Ad53EC3',
+    id: '0x3135b662c38265d0655177091f1b647b4fef511103d06c016efdf18b46930d2c',
+    assets: [
+      '0xb6900011ff85da0f990be424aa88f4dbf2442584',
+      '0x85a14e14309dd9beea55d69512e283f898e1425b',
     ],
   },
 ]
